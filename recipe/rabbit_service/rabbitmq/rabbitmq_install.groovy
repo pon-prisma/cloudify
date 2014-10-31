@@ -123,8 +123,7 @@ switch (currVendor)
 	case ["Red Hat", "CentOS", "Fedora"]:
 	installLinuxRabbitmq(context,builder,currVendor,"installRabbitMq.sh")
 	break
-	//TODO: Suport for other OS can be added here
-	//Giuseppe - aggiungo installazione per Ubuntu
+	// aggiunta installazione per Ubuntu
 	case ["Ubuntu", "Debian"]:
 	installLinuxRabbitmq(context,builder,currVendor,"installRabbitMqOnUbuntu.sh",userAdmin,passAdmin)
 	break	

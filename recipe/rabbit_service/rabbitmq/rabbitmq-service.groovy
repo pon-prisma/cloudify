@@ -35,7 +35,7 @@ service {
 				{
 					if (!System.getenv()["CLOUDIFY_AGENT_ENV_PUBLIC_IP"]) 
 					{
-						// Se CLOUDIFY_AGENT_ENV_PUBLIC_IP è vuoto prendo allora l'indirizzo IP privato.
+						// Se CLOUDIFY_AGENT_ENV_PUBLIC_IP è vuoto prendo l'indirizzo IP privato.
 						currPublicIP = System.getenv()["CLOUDIFY_AGENT_ENV_PRIVATE_IP"]
 					} 
 					else 
@@ -48,7 +48,7 @@ service {
 
 			def vmUuid = System.getenv()["CLOUDIFY_CLOUD_MACHINE_ID"]
 			def vmName =  InetAddress.getLocalHost().getHostName()
-			def serviceType = "[" + "rabbitmq" + "," + "rabbitmq2" + "]"		
+			def serviceType = "[" + "rabbitmq" + "]"		
 		
 			def portIncrement =  context.isLocalCloud() ? context.instanceId-1 : 0
 			
@@ -128,7 +128,6 @@ service {
 	}
 
 
-	/*prova porte ascolto - giuseppe*/
 	network 
 	{
 		port = mgmtPort
@@ -157,101 +156,5 @@ service {
 		"addHostFileEntry" : "add_hostfile_entry.groovy"
 	])
 
-
-/* ---DECOMMENTARE	
-	userInterface 
-	{
-		
-		metricGroups = ([
-			metricGroup
-			{
-		
-				name "process"
-		
-				metrics([
-					"Total Process Cpu Time",
-					"Process Cpu Kernel Time",
-					"Total Process Residential Memory",
-					"Total Num of Page Faults"
-				])
-			}
-		]
-		)
-		
-		widgetGroups = ([
-			widgetGroup 
-			{
-				name "Total Process Cpu Time"
-				widgets([
-					balanceGauge{metric = "Total Process Cpu Time"},
-					barLineChart {
-						metric "Total Process Cpu Time"
-						axisYUnit Unit.REGULAR
-					}
-				])
-			},
-			widgetGroup 
-			{
-				name "Process Cpu Kernel Time"
-				widgets([
-					balanceGauge{metric = "Process Cpu Kernel Time"},
-					barLineChart {
-						metric "Process Cpu Kernel Time"
-						axisYUnit Unit.REGULAR
-					}
-				])
-			},
-			widgetGroup 
-			{
-				name "Total Process Residential Memory"
-				widgets([
-					balanceGauge{metric = "Total Process Residential Memory"},
-					barLineChart {
-						metric "Total Process Residential Memory"
-						axisYUnit Unit.REGULAR
-					}
-				])
-			},
-			widgetGroup 
-			{
-				name "Total Num of Page Faults"
-				widgets([
-					balanceGauge{metric = "Total Num of Page Faults"},
-					barLineChart {
-						metric "Total Num of Page Faults"
-						axisYUnit Unit.REGULAR
-					}
-				])
-			}
-		]
-		)
-	}
-	
-	scaleCooldownInSeconds 20
-	samplingPeriodInSeconds 1
-		
-	scalingRules ([
-		scalingRule {
-
-			serviceStatistics {
-				metric "Total Process Cpu Time"
-				timeStatistics Statistics.averageCpuPercentage
-				instancesStatistics Statistics.maximum
-				movingTimeRangeInSeconds 20
-			}
-
-			highThreshold {
-				value 40
-				instancesIncrease 1
-			}
-
-			lowThreshold {
-				value 25
-				instancesDecrease 1
-			}
-		}
-	])
-
-*/
 	
 }
