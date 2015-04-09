@@ -14,3 +14,4 @@ Inside recipes folder there are:
 - kunagijboss
 - kunajujbosslb
 - wordpress
+- prisma-mongodb
