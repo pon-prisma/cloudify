@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit
 def mongodHost = args[0]
 def mongodPort= args[1]
 
+config = new ConfigSlurper().parse(new File("mongos-service.properties").toURL())
+
 println "mongos_addshard.groovy: mongod host and port = ${mongodHost}:${mongodPort}"
 
 
@@ -32,12 +34,12 @@ println "mongos_addshard.groovy: db result: ${result}"
 
 	
 	
-result = db.command(["enablesharding":"petclinic"])
+result = db.command(["enablesharding":"${config.dbName}"])
 println "mongos_addshard.groovy: db result: ${result}"
-	
-result = db.command(["shardcollection":"petclinic.Person", "key":["_id":1]])
+
+result = db.command(["shardcollection":"${config.dbName}.${config.collectionName}", "key":["_id":1]])
 println "mongos_addshard.groovy: db result: ${result}"
-	
+
 
  
 

@@ -24,7 +24,7 @@ service {
 	numInstances 1
 	
 	compute {
-		template "SMALL_LINUX"
+		template "$template"
 	}
 
 	lifecycle {
@@ -39,8 +39,9 @@ service {
 		monitors{
 			try { 
 				port  = context.attributes.thisInstance["port"] as int
-				mongo = new Mongo("127.0.0.1", port)			
-				db = mongo.getDB("mydb")
+				mongo = new Mongo("127.0.0.1", port)
+				println "mongod-service.groovy: getDB(${dbName}) "			
+				db = mongo.getDB("${dbName}")
 														
 				result = db.command("serverStatus")
 				println "mongod-service.groovy: result is ${result}"	

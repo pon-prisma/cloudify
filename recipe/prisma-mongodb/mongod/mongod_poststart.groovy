@@ -11,6 +11,15 @@ mongosService = serviceContext.waitForService("mongos", 20, TimeUnit.SECONDS)
 if (mongosService == null) {
 	throw new IllegalStateException("mongos service not found. mongos must be installed before mongos.");
 }
+
+mongodService = serviceContext.waitForService("mongod", 20, TimeUnit.SECONDS)
+if (mongodService == null) {
+		throw new IllegalStateException("mongod service not found. mongod must be installed before mongos.");
+}
+println "mongod_poststart.groovy: Attendo 120 secondi fino a quando non ho le istanze pianificate pronte."
+mongodHostInstances = mongodService.waitForInstances(mongodService.numberOfPlannedInstances, 120, TimeUnit.SECONDS)
+println "mongod_poststart.groovy: Numero di istanze trovate"
+
 def port = serviceContext.attributes.thisInstance["port"]
 
 def privateIP
