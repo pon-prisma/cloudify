@@ -2,9 +2,9 @@
 
 
 **Status**: Tested  
-**Description**: Scalable Mongo DB   
-**License**: Apache 2.0
-**Author**: Sielte S.p.A. 
+**Description**: Scalable Mongo DB    
+**License**: Apache 2.0   
+**Author**: Sielte S.p.A.   
 **Project**: PRISMA
    
 
@@ -19,15 +19,15 @@ Parameters
 --------
 
 
-**dbName**="PRISMA" // Name of DB to create
-**collectionName**="VM" // Name of collection to create
-**template**="SMALL_LINUX" // Name of template to use
+**dbName**="PRISMA" // Name of DB to create   
+**collectionName**="VM" // Name of collection to create   
+**template**="SMALL_LINUX" // Name of template to use   
 
  
 Synopsis
 --------
 
-This folder contains a application recipe for the MongoDB server with shard.
+This folder contains a application recipe for the MongoDB server with sharding feature.
 
  
  
